@@ -1,0 +1,49 @@
+<svg width="200" height="300" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+
+    <!-- Stem -->
+    <rect x="95" y="100" width="10" height="150" rx="5" fill="#4CAF50"/>
+
+    <!-- Leaves (simplified) -->
+    <path d="M100 120 Q70 100 60 130 Q70 140 100 130 Z" fill="#6B8E23"/>
+    <path d="M100 150 Q130 130 140 160 Q130 170 100 160 Z" fill="#6B8E23"/>
+    <path d="M100 180 Q70 160 60 190 Q70 200 100 190 Z" fill="#6B8E23"/>
+    <path d="M100 210 Q130 190 140 220 Q130 230 100 220 Z" fill="#6B8E23"/>
+
+    <!-- Hop Cones (placeholders) -->
+    <circle cx="80" cy="110" r="8" fill="#FFD700"/>
+    <circle cx="120" cy="140" r="8" fill="#FFD700"/>
+    <circle cx="70" cy="170" r="8" fill="#FFD700"/>
+    <circle cx="130" cy="200" r="8" fill="#FFD700"/>
+
+    <!-- Soil Humidity Indicator (dynamic) -->
+    <rect id="soil-humidity-level" x="55" y="295" width="90" height="0" fill="#00BFFF"/>
+
+    <!-- Ambient Humidity Indicator (dynamic - example, could be a mist effect) -->
+    <circle id="ambient-humidity-indicator" cx="100" cy="50" r="15" fill="#ADD8E6" opacity="0"/>
+
+    <!-- Temperature Indicator (dynamic - example, could be a color change or thermometer) -->
+    <rect id="temperature-bar" x="170" y="100" width="10" height="0" fill="#FF4500"/>
+    <text x="165" y="90" font-family="Arial" font-size="12" fill="#333">Temp</text>
+
+    <!-- Frost Effect (initially hidden) -->
+    <g id="frost-effect" opacity="0">
+        <rect x="0" y="0" width="200" height="300" fill="#ADD8E6" opacity="0.5"/>
+        <text x="100" y="150" font-family="Arial" font-size="24" fill="#FFFFFF" text-anchor="middle">❄️</text>
+    </g>
+
+    <!-- Sunglasses (initially hidden) -->
+    <g id="sunglasses" opacity="0">
+        <rect x="80" y="70" width="40" height="10" rx="3" fill="#333"/>
+        <circle cx="90" cy="75" r="8" fill="#555"/>
+        <circle cx="110" cy="75" r="8" fill="#555"/>
+        <line x1="80" y1="75" x2="70" y2="73" stroke="#333" stroke-width="2"/>
+        <line x1="120" y1="75" x2="130" y2="73" stroke="#333" stroke-width="2"/>
+    </g>
+
+    <!-- Wind Indicator (initially hidden) -->
+    <g id="wind-indicator" opacity="0">
+        <path d="M10 10 L30 10 L25 5 L30 10 L25 15 Z" fill="#888"/>
+        <path d="M10 20 L30 20 L25 15 L30 20 L25 25 Z" fill="#888"/>
+    </g>
+</svg>
