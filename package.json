@@ -1,11 +1,4 @@
 {
-<<<<<<< HEAD
-  "dependencies": {
-    "firebase": "^11.9.1"
-  },
-  "devDependencies": {
-    "@types/node": "^24.0.6"
-=======
   "name": "frontend",
   "private": true,
   "version": "0.0.0",
@@ -13,15 +6,16 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build --outDir ../dist",
-      "preview": "vite preview",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint ."
   },
   "dependencies": {
+    "firebase": "^11.9.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
+    "@types/node": "^24.0.6",
     "@eslint/js": "^9.29.0",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
@@ -33,6 +27,5 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",
     "vite": "^7.0.0"
->>>>>>> 1d086ec70af41c69a37442c1a019e33795f9410c
   }
 }
