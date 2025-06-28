@@ -1,0 +1,806 @@
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 100%; /* Ensure #root takes full width */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Alinear al inicio para evitar centrado vertical */
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+.container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.irrigation-status-mobile {
+  display: none; /* Ocultar temporalmente */
+}
+
+.tap-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5rem;
+}
+
+.tap-status {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 60px 10px 20px;
+    max-width: 100%; /* Asegurar que ocupe todo el ancho en móvil */
+  }
+
+  .tap-icon {
+    font-size: 1.2rem;
+  }
+
+  .tap-status {
+    font-size: 0.9rem;
+  }
+}
+
+.app-header {
+  width: 100%;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 0 0 15px 15px;
+}
+
+.app-header .app-logo {
+  height: 80px; /* Adjust size as needed for header */
+  margin: 0;
+}
+
+.app-logo {
+  height: 100px; /* Default size, can be overridden */
+  margin-bottom: 10px;
+}
+
+.data-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+  flex: 1;
+  min-width: 250px;
+  font-family: 'Montserrat', sans-serif; /* Elegant font */
+  transition: background-color 0.3s ease;
+}
+
+.data-card:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.data-card h2 {
+  color: #fff;
+  margin-bottom: 15px;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.data-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.data-item:last-child {
+  border-bottom: none;
+}
+
+.data-item .label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.data-item .value {
+  text-align: right;
+}
+
+.app-title-font {
+    font-family: 'Rubik Dirt', cursive;
+    font-size: 2.5em; /* Adjust size as needed */
+    color: #fff; /* Example color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .collapsible-header {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .collapsible-header:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .collapsible-content {
+    padding: 0 18px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.02);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+.sensor-data p {
+  font-size: 1.2em;
+  margin: 5px 0;
+}
+
+.ground {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 100%;
+  height: 250px; /* Adjust as needed to contain plants */
+  position: relative; /* Para que las plantas absolutas se posicionen respecto a este */
+}
+
+.plant-on-ground {
+  position: relative; /* Cambiado a relative para que flexbox funcione */
+  height: 250px; /* Adjust size as needed */
+  z-index: 2;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-size: 0.8em;
+  margin-top: 5px;
+  display: block;
+}
+
+.relay-control {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.relay-control label {
+  font-size: 1.1em;
+  margin-right: 10px;
+}
+
+.relay-control input[type="number"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 80px;
+  text-align: center;
+}
+
+.relay-control button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-left: 10px;
+}
+
+.relay-control button:hover {
+  background-color: #45a049;
+}
+
+.notifications {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.growing-info {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.growing-info h3 {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+}
+
+.season-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.season {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #4CAF50;
+}
+
+.season h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.season ul, .benefits ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.season ul li, .benefits ul li {
+  margin: 8px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.season ul li:before, .benefits ul li:before {
+  content: '🌱';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.benefits {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid #e67e22;
+}
+
+.benefits h4 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+.benefits ul li:before {
+  content: '✨';
+}
+
+.location-config {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.location-config label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.location-config input[type="number"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 120px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.location-display-container {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif; /* Elegant font */
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.location-display-container:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.location-display {
+  font-size: 1.2em;
+  color: #fff;
+  margin: 0;
+}
+
+.manual-sensor-control {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.manual-sensor-control label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.manual-sensor-control input[type="number"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  width: 80px;
+  text-align: center;
+  margin-left: 10px;
+}
+
+.manual-sensor-control button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+
+.manual-sensor-control button:hover {
+  background-color: #45a049;
+}
+
+.field-visualization {
+  position: relative;
+  width: 100%;
+  height: 70vh; /* Altura ajustada para que no sea tan alta */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  background: linear-gradient(to bottom, #87CEEB, #6A5ACD);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.irrigation-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Adjust height as needed */
+  background-color: transparent; /* Make it transparent, as it's an indicator, not the ground */
+  z-index: 2; /* Ensure it's above the plant */
+}
+
+.ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px; /* Adjusted height of the ground */
+  background: linear-gradient(to top, #4a2c2a, #6b4423); /* Brown gradient for earth */
+  border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+  z-index: 1; /* Ensure it's below the plant */
+}
+
+.plants-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.plant-container {
+  width: 150px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  margin-bottom: -50px; /* Ajustar para que la planta parezca estar en el suelo */
+}
+
+
+
+@media (max-width: 600px) {
+  .plants-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+body {
+  transition: background-color 1s ease;
+}
+
+body.day {
+  background: linear-gradient(to bottom, #e0f2f7, #bbdefb); /* Gradiente de día más suave */
+  color: #333;
+}
+
+body.night {
+  background: linear-gradient(to bottom, #000033, #000000); /* Gradiente de azul oscuro a negro para la noche */
+  color: #e0e0e0;
+}
+
+.container.night {
+  background-color: #34345c;
+  color: #fff;
+}
+
+.plant-visualization.day {
+  background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+}
+
+.field-visualization.night {
+  background: linear-gradient(to bottom, #0a0a2a, #000000); /* Dark blue to black for night */
+  position: relative;
+  overflow: hidden;
+}
+
+.stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  animation: animateStars 50s linear infinite;
+}
+
+.stars::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%"><rect width="100%" height="100%" fill="transparent"/><!-- Scattered stars --><circle cx="5%" cy="5%" r="0.7" fill="white"/><circle cx="10%" cy="15%" r="1.1" fill="white"/><circle cx="15%" cy="25%" r="0.9" fill="white"/><circle cx="20%" cy="35%" r="1.4" fill="white"/><circle cx="25%" cy="45%" r="0.6" fill="white"/><circle cx="30%" cy="55%" r="1.2" fill="white"/><circle cx="35%" cy="65%" r="0.8" fill="white"/><circle cx="40%" cy="75%" r="1.0" fill="white"/><circle cx="45%" cy="85%" r="0.5" fill="white"/><circle cx="50%" cy="95%" r="1.3" fill="white"/><circle cx="55%" cy="10%" r="0.9" fill="white"/><circle cx="60%" cy="20%" r="0.7" fill="white"/><circle cx="65%" cy="30%" r="1.1" fill="white"/><circle cx="70%" cy="40%" r="0.6" fill="white"/><circle cx="75%" cy="50%" r="1.2" fill="white"/><circle cx="80%" cy="60%" r="0.8" fill="white"/><circle cx="85%" cy="70%" r="1.0" fill="white"/><circle cx="90%" cy="80%" r="0.5" fill="white"/><circle cx="95%" cy="90%" r="1.3" fill="white"/><circle cx="2%" cy="50%" r="0.9" fill="white"/><circle cx="98%" cy="30%" r="0.7" fill="white"/><circle cx="30%" cy="2%" r="1.1" fill="white"/><circle cx="80%" cy="98%" r="0.6" fill="white"/><circle cx="15%" cy="60%" r="1.2" fill="white"/><circle cx="65%" cy="40%" r="0.8" fill="white"/><circle cx="12%" cy="72%" r="1.0" fill="white"/><circle cx="88%" cy="18%" r="0.7" fill="white"/><circle cx="42%" cy="8%" r="1.2" fill="white"/><circle cx="58%" cy="92%" r="0.9" fill="white"/><circle cx="7%" cy="38%" r="1.1" fill="white"/><circle cx="93%" cy="62%" r="0.8" fill="white"/><circle cx="28%" cy="90%" r="1.3" fill="white"/><circle cx="72%" cy="10%" r="0.6" fill="white"/><circle cx="48%" cy="78%" r="1.0" fill="white"/><circle cx="52%" cy="22%" r="0.7" fill="white"/><circle cx="3%" cy="88%" r="1.2" fill="white"/><circle cx="97%" cy="12%" r="0.9" fill="white"/><circle cx="22%" cy="3%" r="1.1" fill="white"/><circle cx="78%" cy="97%" r="0.8" fill="white"/><circle cx="18%" cy="52%" r="1.3" fill="white"/><circle cx="82%" cy="48%" r="0.6" fill="white"/></svg>');
+  background-size: 100% 100%;
+  opacity: 0.7;
+}
+
+@keyframes animateStars {
+  0% { background-position: 0 0; }
+  100% { background-position: -10000px -10000px; }
+}
+
+.plant-visualization.🌸-primavera {
+  background: linear-gradient(to bottom, #FFB7C5, #E0F6FF);
+}
+
+.plant-visualization.☀️-verano {
+  background: linear-gradient(to bottom, #FFD700, #87CEEB);
+}
+
+.plant-visualization.🍂-otoño {
+  background: linear-gradient(to bottom, #D2691E, #DEB887);
+}
+
+.plant-visualization.❄️-invierno {
+  background: linear-gradient(to bottom, #B0C4DE, #F0F8FF);
+}
+
+.weather-effects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sun {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: #FFD700;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #FFD700;
+}
+
+.moon-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+
+
+.lunar-info-note {
+  position: absolute;
+  top: 60px; /* Adjust as needed to position below the moon */
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  width: 250px; /* Adjust width as needed */
+  font-size: 0.9em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 11;
+}
+
+.lunar-info-note h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+  color: #aaffaa;
+}
+
+.lunar-info-note p {
+  margin-bottom: 0;
+  line-height: 1.4;
+}
+
+.moon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.moon[data-phase='🌑'] { background: #1a1a2e; }
+.moon[data-phase='🌒'] { background: linear-gradient(90deg, #1a1a2e 90%, #FFFFFF 10%); } /* Luna Creciente - thinner crescent */
+.moon[data-phase='🌓'] { background: linear-gradient(90deg, #1a1a2e 50%, #FFFFFF 50%); } /* Cuarto Creciente - half moon */
+.moon[data-phase='🌔'] { background: linear-gradient(-90deg, #1a1a2e 50%, #FFFFFF 50%); }
+.moon[data-phase='🌕'] { background: #FFFFFF; }
+.moon[data-phase='🌖'] { background: linear-gradient(90deg, #FFFFFF 50%, #1a1a2e 50%); }
+.moon[data-phase='🌗'] { background: linear-gradient(90deg, #FFFFFF 50%, #1a1a2e 50%); }
+.moon[data-phase='🌘'] { background: linear-gradient(-90deg, #FFFFFF 10%, #1a1a2e 90%); } /* Luna Menguante - thinner crescent */
+
+.frost-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(173, 216, 230, 0.8), rgba(240, 248, 255, 0.5)); /* Light blue to off-white gradient */
+  pointer-events: none;
+  opacity: 0.9; /* Make it more opaque */
+  filter: blur(1px); /* Add a slight blur for ice effect */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><line x1="0" y1="0" x2="100" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1"/><line x1="100" y1="0" x2="0" y2="100" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></svg>'); /* Subtle ice texture */
+  background-size: 20px 20px;
+}
+
+.rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 4;
+}
+
+.drop {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(173, 216, 230, 0.8), rgba(70, 130, 180, 0.8));
+  width: 2px;
+  height: 10px;
+  border-radius: 50%;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100%); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.wind-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.2) 10px,
+    rgba(255, 255, 255, 0.2) 20px
+  );
+  animation: wind 1s linear infinite;
+  opacity: 0.7;
+}
+
+.clouds {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cloud {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  opacity: 0.8;
+  animation: moveClouds linear infinite;
+}
+
+.cloud:nth-child(1) {
+  width: 120px;
+  height: 70px;
+  top: 10%;
+  left: -15%;
+  animation-duration: 30s;
+  animation-delay: 0s;
+}
+
+.cloud:nth-child(2) {
+  width: 150px;
+  height: 80px;
+  top: 20%;
+  left: -25%;
+  animation-duration: 40s;
+  animation-delay: 5s;
+}
+
+.cloud:nth-child(3) {
+  width: 100px;
+  height: 60px;
+  top: 15%;
+  left: -5%;
+  animation-duration: 35s;
+  animation-delay: 10s;
+}
+
+.cloud:nth-child(4) {
+  width: 180px;
+  height: 90px;
+  top: 5%;
+  left: -30%;
+  animation-duration: 45s;
+  animation-delay: 15s;
+}
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
+}
+
+.hop-plant-svg {
+  animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(0deg) translateY(0); }
+  25% { transform: rotate(-3deg) translateY(-5px); }
+  75% { transform: rotate(3deg) translateY(-2px); }
+}
+
+.sun {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.9; }
+}
+
+.moon {
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+  50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.7); }
+}
+
+@keyframes wind {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+
+.hop-plant-svg {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  transition: all 0.5s ease;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+}
+
+.hop-plant-svg.thirsty {
+  filter: saturate(0.7) brightness(0.9) drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+  transform: scale(0.95) rotate(-2deg);
+}
+
+.hop-plant-svg:hover {
+  transform: scale(1.05) rotate(2deg);
+  filter: brightness(1.1) drop-shadow(0 8px 8px rgba(0,0,0,0.3));
+}
+
+.app-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  z-index: 100; /* Increased z-index to ensure it's on top */
+}
+}
